@@ -1,11 +1,10 @@
 
 #!/bin/bash 
 
-declare -a arr=("https://youtu.be/3Mfhavvvjqw")
-
-for i in "${arr[@]}"
+input="links.txt"
+while IFS= read -r line
 do
-	echo "$i"
-	youtube-dl --extract-audio --audio-format mp3 $i
+  	echo "$line"
+	youtube-dl --extract-audio --audio-format mp3 $line
    
-done
+done < "$input"
