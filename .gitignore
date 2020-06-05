@@ -1,4 +1,5 @@
 *.txt
 
+!links.txt
 !yt_downloader.sh
 !README.md

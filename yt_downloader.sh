@@ -12,7 +12,16 @@ input="links.txt"
 destination_folder="output"
 
 help () {
-	echo "I should be printing helpful stuff here"
+	echo "
+	-f | --file:
+		file containing the yt links (one per line)
+
+	-d | --destination
+		destination folder where the audio will be downloaded
+
+	-h | --help
+		this help menu
+	"
 }
 
 parse_args () {
@@ -34,8 +43,6 @@ parse_args () {
 				shift
 				destination_folder="$1"
 			;;
-			-e|--optflag3) optflag3="SET"            
-			;;
 			*) break
 		esac
 		shift
@@ -52,15 +59,16 @@ fi
 
 echo ""
 echo "Looking for links in \"$input\""
-echo "Saving songs in \"destination_folder\""
+echo "Saving songs in \"$destination_folder\""
 echo ""
+
+output_command="-o $destination_folder/%(title)s.%(ext)s"
 
 while IFS= read -r line
 do
   	echo "Downloading \"$line\""
-	youtube-dl --extract-audio --audio-format mp3 $line
+	youtube-dl -f 'bestaudio' --extract-audio --audio-format mp3 $output_command $line
 	echo ""
-   
 done < "$input"
 
 echo "Script correctly ended"
