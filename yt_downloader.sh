@@ -64,11 +64,16 @@ echo ""
 
 output_command="-o $destination_folder/%(title)s.%(ext)s"
 
+if [ -f "log.txt" ]
+then 
+    rm log.txt
+fi 
+
 while IFS= read -r line
 do
-  	echo "Downloading \"$line\""
-	youtube-dl -f 'bestaudio' --extract-audio --audio-format mp3 $output_command $line
-	echo ""
+  	echo "\n\nDownloading \"$line\""
+	youtube-dl -f 'bestaudio' --ignore-errors --continue --extract-audio --audio-format mp3 $output_command $line | tee log.txt
+	echo "\n\n"
 done < "$input"
 
 echo "Script correctly ended"
