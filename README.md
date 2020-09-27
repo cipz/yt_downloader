@@ -10,4 +10,4 @@ These can be changed with:
 ```
 ## youtube-dl
 This script is just a wrapper for a [youtube-dl](https://github.com/ytdl-org/youtube-dl) command.
-Hence it is necessary to have it installed and up to date.
+Hence it is necessary to have it installed and [up to date](https://github.com/ytdl-org/youtube-dl/blob/master/README.md#how-do-i-update-youtube-dl).
